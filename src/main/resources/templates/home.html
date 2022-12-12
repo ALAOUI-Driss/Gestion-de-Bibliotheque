@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/cssandjs/main.css}"/>
+<title>Home</title>
+</head>
+<body>
+	<h1>Bienvenue au service de gestion des documents</h1>
+	<div class="navbar">
+	  <a th:href="@{/}">Accueil</a>
+	  <a th:href="@{/adherant/index}">Adherants</a>
+	  <a th:href="@{/emprunt/index}">Emprunt</a>
+	  <div class="dropdown">
+	    <button class="dropbtn" >
+	      <i>Documents</i>
+	    </button>
+	    <div class="dropdown-content">
+	      <a th:href="@{/document/livre/index}">Livres</a>
+	      <a th:href="@{/document/revue/index}">Revues</a>
+	      <a th:href="@{/document/dictionnaire/index}">Dictionnaire</a>
+	    </div>
+	  </div>
+	</div> 
+	<img src="/styles/fac.png" alt="Faculte">
+	<div>
+		<p>
+			Ce service a ete cree dans le cadre du projet de master pour le cours de 
+			EJB - Spring Boot par ALAOUI Driss a l'universite Ibn Tofail.
+		</p>
+	</div>
+</body>
+</html>

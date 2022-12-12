@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/cssandjs/main.css}"/>
+<title>emprunts</title>
+</head>
+<body>
+	<h1>Index des emprunts</h1>
+	<div class="navbar">
+	  <a th:href="@{/}">Accueil</a>
+	  <a th:href="@{/adherant/index}">Adherants</a>
+	  <a th:href="@{/emprunt/index}">Emprunt</a>
+	  <div class="dropdown">
+	    <button class="dropbtn" >
+	      <i>Documents</i>
+	    </button>
+	    <div class="dropdown-content">
+	      <a th:href="@{/document/livre/index}">Livres</a>
+	      <a th:href="@{/document/revue/index}">Revues</a>
+	      <a th:href="@{/document/dictionnaire/index}">Dictionnaire</a>
+	    </div>
+	  </div>
+	</div> 
+	<br>
+	<a th:href="@{/emprunt/ajouter}">
+		<button class="nouveau">nouvel emprunt</button>
+	</a>
+	<br><br>
+	
+	<table>
+		<tr>
+			<td>
+				<form action="#" th:action="@{/emprunt/rechercher}">
+					<label>rechercher par id adherant :</label>
+					<input type="hidden" name="searchType" value="adherant">
+					<select id="adherant" name="search">
+						<option 
+							th:each="adherant : ${adherants}" 
+							th:value="${adherant.getId}"
+							th:utext="${adherant.getId}"
+						></option>
+					</select>
+					<input type="submit" value="Rechercher">
+				</form>
+			</td>
+			<td>
+			<form action="#" th:action="@{/emprunt/rechercher}">
+				<label>rechercher par date emprunt :</label>
+				<input type="hidden" name="searchType" value="dateEmprunt">
+				<input type="date" name="search">
+				<input type="submit" value="Rechercher">
+			</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="#" th:action="@{/emprunt/rechercher}">
+					<label>rechercher par id document :</label>
+					<input type="hidden" name="searchType" value="document">
+					<select id="document" name="search">
+						<option 
+							th:each="document : ${documents}" 
+							th:value="${document.getId}"
+							th:utext="${document.getId}"
+						></option>
+					</select>
+					<input type="submit" value="Rechercher">
+				</form>
+			</td>
+			<td>
+				<form action="#" th:action="@{/emprunt/rechercher}">
+					<label>rechercher par date retour :</label>
+					<input type="hidden" name="searchType" value="dateRetour">
+					<input type="date" name="search">
+					<input type="submit" value="Rechercher">
+				</form>
+			</td>
+		</tr>
+	</table>
+	
+	<br><hr><br>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Date emprunt</th>
+			<th>Date retour</th>
+			<th>ID Adherant</th>
+			<th>ID Document</th>
+		</tr>
+		<tr th:each="emprunt : ${emprunts}">
+			<td th:utext="${emprunt.getId}"></td>
+			<td th:utext="${emprunt.dateEmprunt}"></td>
+			<td th:utext="${emprunt.dateRetour}"></td>
+			<td th:utext="${emprunt.adherant.getId()}"></td>
+			<td th:utext="${emprunt.document.getId()}"></td>
+			<td>
+				<a th:href="@{/emprunt/supprimer(id=${emprunt.getId})}">
+					<button class="supprimer">Supprimer</button>
+				</a>
+			</td>
+			<td>
+				<a th:href="@{/emprunt/modifier(id=${emprunt.getId})}">
+					<button class="modifier">Modifier</button>
+				</a>
+			</td>
+			<td>
+			</td>
+		</tr>
+	</table>
+	
+</body>
+</html>

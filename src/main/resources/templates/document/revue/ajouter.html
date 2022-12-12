@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/cssandjs/main.css}"/>
+<title>revue ajouter</title>
+</head>
+<body>
+	<h1>Ajouter une revue</h1>
+	<div class="navbar">
+	  <a th:href="@{/}">Accueil</a>
+	  <a th:href="@{/adherant/index}">Adherants</a>
+	  <a th:href="@{/emprunt/index}">Emprunt</a>
+	  <div class="dropdown">
+	    <button class="dropbtn" >
+	      <i>Documents</i>
+	    </button>
+	    <div class="dropdown-content">
+	      <a th:href="@{/document/livre/index}">Livres</a>
+	      <a th:href="@{/document/revue/index}">Revues</a>
+	      <a th:href="@{/document/dictionnaire/index}">Dictionnaire</a>
+	    </div>
+	  </div>
+	</div> 
+	<form action="#" method="post" th:action="@{/document/revue/ajouter}" th:object="${revue}">
+                
+                <input type="hidden" th:field=*{id}>
+                <input type="hidden" value="0" th:field=*{dispo}>
+                
+                <label>prix</label><br/>
+                <input type="text" th:field=*{prix}><br/>
+                
+                <label>annee</label><br/>
+                <input type="text" th:field=*{annee}><br/>
+                
+                <input type="submit" value="Enregistrer">
+	</form>
+</body>
+</html>

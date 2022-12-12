@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/cssandjs/main.css}"/>
+<title>livres</title>
+</head>
+<body>
+	<h1>Index des livres</h1>
+	<div class="navbar">
+	  <a th:href="@{/}">Accueil</a>
+	  <a th:href="@{/adherant/index}">Adherants</a>
+	  <a th:href="@{/emprunt/index}">Emprunt</a>
+	  <div class="dropdown">
+	    <button class="dropbtn" >
+	      <i>Documents</i>
+	    </button>
+	    <div class="dropdown-content">
+	      <a th:href="@{/document/livre/index}">Livres</a>
+	      <a th:href="@{/document/revue/index}">Revues</a>
+	      <a th:href="@{/document/dictionnaire/index}">Dictionnaire</a>
+	    </div>
+	  </div>
+	</div> 
+	<a th:href="@{/document/livre/ajouter}">
+		<button class="nouveau">nouveau livre</button>
+	</a>
+	<br>
+	
+	<form action="#" th:action="@{/document/livre/rechercher}">
+		<input type="search" name="search" th:value="${search}">
+		<select id="searchType" name="searchType">
+			<option value="id">id</option>
+			<option value="auteur">auteur</option>
+			<option value="prix">prix</option>
+		</select>
+		<input type="submit" value="rechercher">
+	</form>
+	<br><hr><br>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Prix</th>
+			<th>Auteur</th>
+			<th>Pages</th>
+			<th>dispo</th>
+		</tr>
+		<tr th:each="livre : ${livres}">
+			<td th:utext="${livre.getId}"></td>
+			<td th:utext="${livre.getPrix}"></td>
+			<td th:utext="${livre.getAuteur}"></td>
+			<td th:utext="${livre.getNbrpages}"></td>
+			<td th:utext="${livre.getDispo}"></td>
+			<td>
+				<a th:href="@{/document/livre/supprimer(id=${livre.getId})}">
+					<button class="supprimer">Supprimer</button>
+				</a>
+			</td>
+			<td>
+				<a th:href="@{/document/livre/modifier(id=${livre.getId})}">
+					<button class="modifier">Modifier</button>
+				</a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

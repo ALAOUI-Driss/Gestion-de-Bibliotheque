@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/cssandjs/main.css}"/>
+<title>adherant modifier</title>
+</head>
+<body>
+	<h1>Modifier un adherant</h1>
+	<div class="navbar">
+	  <a th:href="@{/}">Accueil</a>
+	  <a th:href="@{/adherant/index}">Adherants</a>
+	  <a th:href="@{/emprunt/index}">Emprunt</a>
+	  <div class="dropdown">
+	    <button class="dropbtn" >
+	      <i>Documents</i>
+	    </button>
+	    <div class="dropdown-content">
+	      <a th:href="@{/document/livre/index}">Livres</a>
+	      <a th:href="@{/document/revue/index}">Revues</a>
+	      <a th:href="@{/document/dictionnaire/index}">Dictionnaire</a>
+	      <a th:href="@{/emprunt/index}">Emprunt</a>
+	    </div>
+	  </div>
+	</div> 
+	<form 
+		action="#" 
+		method="post" 
+		th:action="@{/adherant/modifier}" 
+		th:object="${adherant}"
+	>
+                
+                <input type="hidden" th:field=*{id}>
+                
+                <label>Nom</label><br/>
+                <input type="text" th:field=*{nom}><br/>
+                
+                <label>Prenom</label><br/>
+                <input type="text" th:field=*{prenom}><br/>
+                
+                <label>Adresse</label><br/>
+                <input type="text" th:field=*{adresse}><br/>
+                
+                <label>CIN</label><br/>
+                <input type="text" th:field=*{cin}><br/>
+                
+                <label>Date de naissance</label><br/>
+                <input type="date" th:field=*{date}><br/>
+                
+                <input type="submit" value="Enregistrer">
+	</form>
+
+</body>
+</html>

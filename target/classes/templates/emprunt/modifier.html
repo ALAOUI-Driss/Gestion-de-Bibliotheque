@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/cssandjs/main.css}"/>
+<title>emprunt modifier</title>
+</head>
+<body>
+	<h1>Modifier un emprunt</h1>
+	<div class="navbar">
+	  <a th:href="@{/}">Accueil</a>
+	  <a th:href="@{/adherant/index}">Adherants</a>
+	  <a th:href="@{/emprunt/index}">Emprunt</a>
+	  <div class="dropdown">
+	    <button class="dropbtn" >
+	      <i>Documents</i>
+	    </button>
+	    <div class="dropdown-content">
+	      <a th:href="@{/document/livre/index}">Livres</a>
+	      <a th:href="@{/document/revue/index}">Revues</a>
+	      <a th:href="@{/document/dictionnaire/index}">Dictionnaire</a>
+	    </div>
+	  </div>
+	</div>
+	<div th:switch="${erreur}">
+		<p th:case="erreur_date" class="erreur">
+			Erreur : la date de retour ne peut pas etre avant la date d'emprunt
+		</p>
+	</div>
+	<form action="#" method="post" th:action="@{/emprunt/ajouter}" th:object="${emprunt}">
+                
+                <input type="hidden" th:field=*{id}>
+                
+                <label>Date emprunt</label><br/>
+                <input type="date" th:field=*{dateEmprunt}><br/>
+                
+                <label>Date retour</label><br/>
+                <input type="date" th:field=*{dateRetour}><br/>
+                
+                <label>Adherant</label><br/>
+				<select id="adherant" name="adherant" th:field="*{adherant}">
+					<option 
+						th:each="adherant : ${adherants}" 
+						th:value="${adherant.getId}"
+						th:utext="${adherant.getId}"
+					></option>
+				</select><br>
+                
+                <label>Document</label><br/>
+				<select id="document" name="document" th:field="*{document}">
+					<option 
+						th:each="document : ${documents}" 
+						th:value="${document.getId}"
+						th:utext="${document.getId}"
+					></option>
+				</select><br>
+                <input type="submit" value="Enregistrer">
+	</form>
+
+</body>
+</html>
